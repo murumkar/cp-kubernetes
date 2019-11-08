@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schema-registry-deployment
+  labels:
+    app: schema-registry-app
+    environment: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: schema-registry-app
+      environment: dev
+  template:
+    metadata:
+      labels:
+        app: schema-registry-app
+        environment: dev
+    spec:
+      containers:
+      - name: schema-registry-container
+        image: docker-ids-dim-release.dr-uw2.adobeitc.com/cp-schema-registry:5.3.1
+        env:
+        - name: SCHEMA_REGISTRY_DEBUG
+          value: "true"
+        - name: SCHEMA_REGISTRY_HOST_NAME
+          value: "schema-registry"
+        - name: SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL
+          value: "or1010051053014.corp.adobe.com:2181"
+        #- name: SCHEMA_REGISTRY_LISTENERS
+          #value: "http://schema-registry:8081"
+        ports:
+        - containerPort: 8081
+      hostname: schema-registry
+      imagePullSecrets:
+      - name: registrypullsecret
+      restartPolicy: Always

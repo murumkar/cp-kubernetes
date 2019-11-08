@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: connect-service
+    environment: dev
+  name: connect-service-dev
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8083
+    targetPort: 8083
+  selector:
+    app: connect-app
+    environment: dev
+  sessionAffinityConfig: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 600
