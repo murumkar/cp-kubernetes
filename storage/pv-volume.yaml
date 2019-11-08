@@ -20,4 +20,4 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - or1hdp1095.corp.adobe.com
+          - hostname.example.com

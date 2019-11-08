@@ -17,7 +17,7 @@ metadata:
 
 spec:
   rules:
-  - host: services.dim.adobe.com
+  - host: services.example.com
     http:
       paths:
         - path: /rest/?(.*)
